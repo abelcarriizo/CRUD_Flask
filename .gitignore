@@ -1,8 +1,6 @@
 #Byte-compiled / optimized / DLL files
-__pycache__/
-./models/__pycache__
-./routes/__pycache__
-./utils/__pycache__
+__pycache__
 
 #Environments
 ./venv
+.env
