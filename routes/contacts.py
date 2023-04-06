@@ -21,9 +21,20 @@ def add():
 
     return redirect(url_for('contacts.home'))
 
-@contacts.route('/update')
-def update():
-    return 'update a contact'
+@contacts.route('/update/<id>', methods=['POST', 'GET'])
+def update(id):
+    if request.method == 'POST':
+        contact = Contact.query.get(id)
+        contact.fullname = request.form["fullname"]
+        contact.email = request.form["email"]
+        contact.phone = request.form["phone"]
+        
+        db.session.commit()
+
+        return redirect(url_for('contacts.home'))
+    
+    contact = Contact.query.get(id)
+    return render_template('update.html', contact=contact)
 
 @contacts.route('/delete/<id>')
 def delete(id):
