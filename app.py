@@ -1,10 +1,13 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from  env_config import DATABASE_CONNECTION_URI
+from routes.contacts import contacts
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return '<p>Hello, world!</p>'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_CONNECTION_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#SQLAlchemy(app)
+
+app.register_blueprint(contacts)
