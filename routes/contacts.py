@@ -20,11 +20,22 @@ def add():
     db.session.add(new_contact)
     db.session.commit()
 
-    return redirect(url_for('home'))
+    return redirect(url_for('contacts.home'))
 
-@contacts.route("/update")
-def update():
-    return render_template('about.html')
+@contacts.route("/update/<id>", methods=["GET", "POST"])
+def update(id):
+    contact = Contact.query.get(id)
+    
+    if request.method == "POST":
+        contact.fullname = request.form['fullname']
+        contact.email = request.form['email']
+        contact.phone = request.form['phone']
+        
+        db.session.commit()
+
+        return redirect(url_for('contacts.home'))
+    
+    return render_template('update.html', contact=contact)
 
 @contacts.route("/delete/<id>")
 def delete(id):
@@ -32,4 +43,4 @@ def delete(id):
     db.session.delete(contact)
     db.session.commit()
 
-    return redirect(url_for('home'))
+    return redirect(url_for('contacts.home'))
