@@ -56,7 +56,7 @@ CREATE DATABASE nombre_de_la_base_de_datos;
 1. **Clona el repositorio:**
 
 ```bash
-git clone https://github.com/tu_usuario/CRUD_Flask.git
+git clone https://github.com/abelcarriizo/CRUD_Flask.git
 cd CRUD_Flask
 ```
 
