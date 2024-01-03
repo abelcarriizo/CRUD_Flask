@@ -50,3 +50,7 @@ def delete(id):
     flash('Contact deleted successfully!')
 
     return redirect(url_for('contacts.home'))
+
+@contacts.route("/about")
+def about():
+    return render_template('about.html')
